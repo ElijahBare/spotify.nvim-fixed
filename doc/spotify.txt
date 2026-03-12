@@ -26,9 +26,12 @@ spotify.setup({opts})                                           *spotify.setup()
 
     Requires a Client ID and Client Secret from a Spotify developer app.
     Create one at https://developer.spotify.com/dashboard.
-    I recommend using http://localhost:8888/callback for the Redirect URI.
+    I recommend using http://127.0.0.1:8888/callback for the Redirect URI.
     If you would like to use a different port, specify the port you use with
     {auth_redirect_uri_port}.
+
+    **YOU CANNOT USE localhost BECAUSE SPOTIFY HAS DEPERECATED IT FOR WHATEVER
+    REASON**
 
 
     Parameters: ~

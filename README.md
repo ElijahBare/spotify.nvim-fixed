@@ -4,46 +4,57 @@ Control Spotify from Neovim: one step closer to the Neovimux distribution all
 Emacs users fear...
 
 ## Features
-* Make calls to the Spotify Web API with
-    ```lua
-    local response = require("spotify.api").call(endpoint, method, body)
-    ```
-* ...I guess that's it
+
+- Make calls to the Spotify Web API with
+
+  ```lua
+  local response = require("spotify.api").call(endpoint, method, body)
+  ```
+
+- ...I guess that's it
 
 ## Quickstart
 
 Let's cut to the chase.
 
-1. Create a [Spotify developer app](https://developer.spotify.com/dashboard) 
-with a redirect URI of http://localhost:8888/callback and
-copy the Client ID and Client Secret.
+1. Create a [Spotify developer app](https://developer.spotify.com/dashboard)
+   with a redirect URI of <http://127.0.0.1:8888/callback> and
+
+   copy the Client ID and Client Secret.
+
 2. Add the following somewhere in your Neovim config:
-    ```lua
-    require("spotify").setup({
-        client_id = "CLIENT_ID",
-        client_secret = "CLIENT_SECRET",
-    })
-    ```
+
+   ```lua
+   require("spotify").setup({
+       client_id = "CLIENT_ID",
+       client_secret = "CLIENT_SECRET",
+   })
+   ```
+
 3. Create a function you find useful:
-    ```lua
-    local function new_spotify_playlist()
-        local playlists_endpoint = "/me/playlists"
-        local method = "post"
-        local playlist_body = {
-            name = "spotify.nvim",
-            description = "omg i created this with spotify.nvim???",
-            public = true
-        }
-        return require("spotify.api").call(playlists_endpoint, method, playlist_body)
-    end
-    ```
+
+   ```lua
+   local function new_spotify_playlist()
+       local playlists_endpoint = "/me/playlists"
+       local method = "post"
+       local playlist_body = {
+           name = "spotify.nvim",
+           description = "omg i created this with spotify.nvim???",
+           public = true
+       }
+       return require("spotify.api").call(playlists_endpoint, method, playlist_body)
+   end
+   ```
+
 4. Bind your function to a keymap:
-    ```lua
-    vim.keymap.set("n", "<leader>mnp", function()
-        local new_playlist = new_spotify_playlist()
-        vim.notify(vim.inspect(new_playlist))
-    end)
-    ```
+
+   ```lua
+   vim.keymap.set("n", "<leader>mnp", function()
+       local new_playlist = new_spotify_playlist()
+       vim.notify(vim.inspect(new_playlist))
+   end)
+   ```
+
 5. Repeat steps 3 and 4.
 
 ## Installation
@@ -75,17 +86,21 @@ This plugin provides a means of interacting with the Spotify Web API in
 Neovim. I'd like to see someone make such a thing in VSC\*de!
 
 The idea is as follows. Calling
+
 ```lua
 require("spotify").setup({
     client_id = "CLIENT_ID",
     client_secret = "CLIENT_SECRET",
 })
 ```
+
 handles all the Spotify auth shenanigans. After running the setup, you can then
 run something of the form
+
 ```lua
 local response = require("spotify.api").call(endpoint, method, body)
 ```
+
 which will handle any auth token refreshing if necessary and then query the
 specified API endpoint.
 
@@ -137,7 +152,10 @@ goto your [dashboard](https://developer.spotify.com/dashboard), and click
 "Create App".
 
 Fill out the form and for "Redirect URIs" add
-* http://localhost:8888/callback
+
+- <http://127.0.0.1:8888/callback>
+
+**YOU CANNOT USE localhost BECAUSE SPOTIFY HAS DEPERECATED IT FOR WHATEVER REASON**
 
 You can use another port if you would like, but be sure to specify the
 `auth_redirect_uri_port` parameter in the `setup` function.
@@ -195,7 +213,7 @@ return {
 }
 ```
 
-## HELP!!!
+## HELP
 
 ### Vimdoc
 
@@ -205,4 +223,4 @@ return {
 
 ### Spotify Web API Documentation
 
-https://developer.spotify.com/documentation/web-api
+<https://developer.spotify.com/documentation/web-api>
