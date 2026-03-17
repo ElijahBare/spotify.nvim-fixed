@@ -45,7 +45,7 @@ local function open_in_browser(url)
 	elseif vim.fn.has("unix") == 1 then
 		cmd = string.format("xdg-open '%s'", url)
 	elseif vim.fn.has("win32") == 1 then
-		cmd = string.format("start '%s'", url)
+		cmd = string.format("chrome '%s'", url)
 	else
 		error("Spotify Auth: Unsupported OS")
 	end
